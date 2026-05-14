@@ -44,7 +44,7 @@ class PNSCSOLO_Page_Handler {
         }
         
         // Don't replace for logout, lost password, etc.
-        $action = isset($_REQUEST['action']) ? sanitize_text_field(wp_unslash($_REQUEST['action'])) : 'login';
+        $action = isset($_REQUEST['action']) ? sanitize_text_field(wp_unslash($_REQUEST['action'])) : 'login'; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
         
         if (in_array($action, array('logout', 'lostpassword', 'resetpass', 'rp', 'postpass'))) {
             return;
@@ -109,7 +109,7 @@ class PNSCSOLO_Page_Handler {
                     )));
                 } else {
                     // Get redirect URL
-                    $redirect_to = isset($_REQUEST['redirect_to']) ? esc_url_raw(wp_unslash($_REQUEST['redirect_to'])) : admin_url();
+                    $redirect_to = isset($_REQUEST['redirect_to']) ? esc_url_raw(wp_unslash($_REQUEST['redirect_to'])) : admin_url(); // phpcs:ignore WordPress.Security.NonceVerification.Recommended
                     
                     ?>
                     <div class="pnscsolo-login-form-wrapper">
@@ -117,7 +117,7 @@ class PNSCSOLO_Page_Handler {
                         
                         <?php
                         // Show any login errors
-                        if (isset($_GET['login']) && sanitize_text_field(wp_unslash($_GET['login'])) === 'failed') {
+                        if (isset($_GET['login']) && sanitize_text_field(wp_unslash($_GET['login'])) === 'failed') { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
                             echo '<div class="pnscsolo-form-messages error">' . esc_html__('Invalid username or password.', 'pnscode-social-login-and-register') . '</div>';
                         }
                         ?>
@@ -195,7 +195,7 @@ class PNSCSOLO_Page_Handler {
         </html>
         <?php
         $output = ob_get_clean();
-        echo $output;
+        echo $output; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
         exit;
     }
     

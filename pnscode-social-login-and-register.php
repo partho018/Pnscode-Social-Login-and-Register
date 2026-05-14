@@ -148,7 +148,7 @@ class PNSCSOLO_Main {
      * Enqueue frontend assets
      */
     public function enqueue_frontend_assets() {
-        wp_enqueue_style('pnscsolo-google-fonts', 'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@400;500;600;700&display=swap', array(), null);
+        wp_enqueue_style('pnscsolo-google-fonts', 'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@400;500;600;700&display=swap', array(), PNSCSOLO_VERSION);
         wp_enqueue_style('pnscsolo-frontend', PNSCSOLO_PLUGIN_URL . 'assets/css/frontend.css', array('pnscsolo-google-fonts'), PNSCSOLO_VERSION);
         wp_enqueue_script('pnscsolo-frontend', PNSCSOLO_PLUGIN_URL . 'assets/js/frontend.js', array('jquery'), PNSCSOLO_VERSION, true);
         

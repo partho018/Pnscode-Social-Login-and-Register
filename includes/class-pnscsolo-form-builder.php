@@ -120,7 +120,7 @@ class PNSCSOLO_Form_Builder {
                 <div class="pnscsolo-login-link">
                     <p>
                         <?php esc_html_e('Already have an account?', 'pnscode-social-login-and-register'); ?>
-                        <a href="<?php echo !empty($args['login_url']) ? esc_url($args['login_url']) : wp_login_url(); ?>">
+                        <a href="<?php echo !empty($args['login_url']) ? esc_url($args['login_url']) : esc_url(wp_login_url()); ?>">
                             <?php esc_html_e('Login', 'pnscode-social-login-and-register'); ?>
                         </a>
                     </p>
@@ -219,7 +219,7 @@ class PNSCSOLO_Form_Builder {
             wp_send_json_error(array('message' => __('Permission denied', 'pnscode-social-login-and-register')));
         }
         
-        $fields_raw = isset($_POST['fields']) ? json_decode(wp_unslash($_POST['fields']), true) : array();
+        $fields_raw = isset($_POST['fields']) ? json_decode(sanitize_textarea_field(wp_unslash($_POST['fields'])), true) : array();
         $fields = array();
         
         if (is_array($fields_raw)) {

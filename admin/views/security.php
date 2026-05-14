@@ -25,14 +25,14 @@ $pnscsolo_max_attempts = $pnscsolo_settings['max_login_attempts'] ?? 5;
 
 // Get users with locked accounts
 $pnscsolo_locked_users = get_users(array(
-    'meta_key' => 'PNSCSOLO_account_locked',
-    'meta_value' => '1',
+    'meta_key'   => 'PNSCSOLO_account_locked', // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_key
+    'meta_value' => '1',                       // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_value
 ));
 
 // Get recent login activities across site (this is a bit heavy, but for small/medium sites it works)
 $pnscsolo_recent_logins     = array();
 $pnscsolo_users_with_history = get_users(array(
-    'meta_key' => 'PNSCSOLO_last_login',
+    'meta_key' => 'PNSCSOLO_last_login', // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_key
     'orderby' => 'meta_value',
     'order' => 'DESC',
     'number' => 10
@@ -151,10 +151,10 @@ foreach ($pnscsolo_users_with_history as $pnscsolo_u) {
                             <?php foreach ($pnscsolo_locked_users as $pnscsolo_user): ?>
                                 <li style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #f1f5f9; padding-bottom: 10px; margin-bottom: 10px;">
                                     <div>
-                                        <span style="display: block; font-weight: 600; font-size: 13px;"><?php echo esc_html($user->user_login); ?></span>
+                                        <span style="display: block; font-weight: 600; font-size: 13px;"><?php echo esc_html($pnscsolo_user->user_login); ?></span>
                                         <span style="font-size: 11px; color: #94a3b8;"><?php esc_html_e('Locked due to multiple fails', 'pnscode-social-login-and-register'); ?></span>
                                     </div>
-                                    <a href="<?php echo wp_nonce_url(admin_url('admin.php?page=pnscsolo-social-login-security&action=unlock&user_id=' . $user->ID), 'PNSCSOLO_unlock_user'); ?>" class="pnscsolo-btn pnscsolo-btn-secondary" style="padding: 4px 8px; font-size: 11px;">
+                                    <a href="<?php echo esc_url(wp_nonce_url(admin_url('admin.php?page=pnscsolo-social-login-security&action=unlock&user_id=' . $pnscsolo_user->ID), 'PNSCSOLO_unlock_user')); ?>" class="pnscsolo-btn pnscsolo-btn-secondary" style="padding: 4px 8px; font-size: 11px;">
                                         <?php esc_html_e('Unlock', 'pnscode-social-login-and-register'); ?>
                                     </a>
                                 </li>

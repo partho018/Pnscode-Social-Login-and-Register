@@ -80,12 +80,12 @@ class PNSCSOLO_Email_Verification {
      * Handle email verification
      */
     public function handle_verification() {
-        if (!isset($_GET['PNSCSOLO_action']) || sanitize_text_field(wp_unslash($_GET['PNSCSOLO_action'])) !== 'verify_email') {
+        if (!isset($_GET['PNSCSOLO_action']) || sanitize_text_field(wp_unslash($_GET['PNSCSOLO_action'])) !== 'verify_email') { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
             return;
         }
         
-        $user_id = isset($_GET['user_id']) ? intval($_GET['user_id']) : 0;
-        $token = isset($_GET['token']) ? sanitize_text_field(wp_unslash($_GET['token'])) : '';
+        $user_id = isset($_GET['user_id']) ? intval($_GET['user_id']) : 0; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+        $token = isset($_GET['token']) ? sanitize_text_field(wp_unslash($_GET['token'])) : ''; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
         
         if (!$user_id || !$token) {
             wp_die(esc_html__('Invalid verification link.', 'pnscode-social-login-and-register'));

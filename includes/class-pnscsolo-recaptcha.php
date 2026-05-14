@@ -42,7 +42,7 @@ class PNSCSOLO_Recaptcha {
             'google-recaptcha',
             'https://www.google.com/recaptcha/api.js',
             array(),
-            null,
+            PNSCSOLO_VERSION,
             true
         );
     }

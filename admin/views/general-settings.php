@@ -12,7 +12,7 @@ if (!current_user_can('manage_options')) {
 }
 
 $pnscsolo_settings = PNSCSOLO_Settings::get_general_settings();
-$pnscsolo_message  = isset($_GET['message']) && $_GET['message'] === 'saved';
+$pnscsolo_message  = isset($_GET['message']) && $_GET['message'] === 'saved'; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 ?>
 
 <div class="wrap pnscsolo-admin-wrap pnscsolo-general-page">

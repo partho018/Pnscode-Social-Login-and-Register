@@ -14,13 +14,13 @@ if (!current_user_can('manage_options')) {
 $pnscsolo_auth              = PNSCSOLO_Social_Auth::get_instance();
 $pnscsolo_providers         = $pnscsolo_auth->get_all_providers();
 $pnscsolo_allowed_providers = array_keys($pnscsolo_providers);
-$pnscsolo_active_provider    = isset($_GET['provider']) ? sanitize_text_field(wp_unslash($_GET['provider'])) : 'google';
+$pnscsolo_active_provider    = isset($_GET['provider']) ? sanitize_text_field(wp_unslash($_GET['provider'])) : 'google'; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 
 if (!in_array($pnscsolo_active_provider, $pnscsolo_allowed_providers, true)) {
     $pnscsolo_active_provider = 'google';
 }
 
-$pnscsolo_message = isset($_GET['message']) && 'saved' === $_GET['message'];
+$pnscsolo_message = isset($_GET['message']) && 'saved' === $_GET['message']; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 ?>
 
 <div class="wrap pnscsolo-admin-wrap pnscsolo-providers-page">

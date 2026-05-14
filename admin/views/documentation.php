@@ -12,7 +12,7 @@ if (!current_user_can('manage_options')) {
 }
 
 $pnscsolo_allowed_docs = array('google', 'facebook', 'twitter', 'linkedin', 'github');
-$pnscsolo_active_doc   = isset($_GET['provider']) ? sanitize_text_field(wp_unslash($_GET['provider'])) : 'google';
+$pnscsolo_active_doc   = isset($_GET['provider']) ? sanitize_text_field(wp_unslash($_GET['provider'])) : 'google'; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 
 if (!in_array($pnscsolo_active_doc, $pnscsolo_allowed_docs, true)) {
     $pnscsolo_active_doc = 'google';

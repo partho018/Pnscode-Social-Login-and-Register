@@ -266,7 +266,7 @@ class PNSCSOLO_User_Handler {
             }
             
             $username = isset($_POST['log']) ? sanitize_user(wp_unslash($_POST['log'])) : '';
-            $password = isset($_POST['pwd']) ? wp_unslash($_POST['pwd']) : '';
+            $password = isset($_POST['pwd']) ? wp_unslash($_POST['pwd']) : ''; // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
             $remember = isset($_POST['rememberme']) && $_POST['rememberme'] === 'forever';
             $redirect_to = isset($_POST['redirect_to']) ? esc_url_raw(wp_unslash($_POST['redirect_to'])) : '';
             

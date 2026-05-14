@@ -77,12 +77,12 @@ class PNSCSOLO_Social_Auth {
      * Handle OAuth callback
      */
     public function handle_callback() {
-        if (!isset($_GET['PNSCSOLO_provider']) || !isset($_GET['PNSCSOLO_action'])) {
+        if (!isset($_GET['PNSCSOLO_provider']) || !isset($_GET['PNSCSOLO_action'])) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
             return;
         }
         
-        $provider_name = sanitize_text_field(wp_unslash($_GET['PNSCSOLO_provider']));
-        $action = sanitize_text_field(wp_unslash($_GET['PNSCSOLO_action']));
+        $provider_name = sanitize_text_field(wp_unslash($_GET['PNSCSOLO_provider'])); // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+        $action = sanitize_text_field(wp_unslash($_GET['PNSCSOLO_action'])); // phpcs:ignore WordPress.Security.NonceVerification.Recommended
         
         if ($action !== 'callback') {
             return;
